@@ -4,8 +4,8 @@
 	"version": "0.0.1",
 	"type": "module",
 	"engine": {
-		"node": "=24",
-		"npm": "=11"
+		"node": ">=24 < 25",
+		"npm": ">=11 < 12"
 	},
 	"scripts": {
 		"dev": "vite dev",
