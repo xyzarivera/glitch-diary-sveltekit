@@ -1,5 +1,5 @@
 import { mdsvex } from 'mdsvex';
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -13,10 +13,18 @@ const config = {
     })
   ],
 	kit: {
-		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
-		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
-		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
-		adapter: adapter()
+		adapter: adapter({
+      // defaults from https://svelte.dev/docs/kit/adapter-static
+			pages: 'build',
+			assets: 'build',
+			fallback: undefined, // TODO: create 404.html
+			precompress: false,
+			strict: true
+    }),
+    // serve to the correct Github Pages URL
+    paths: {
+      base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
+    }
 	},
 	extensions: ['.svelte', '.svx', '.md']
 };
