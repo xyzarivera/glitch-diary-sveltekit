@@ -21,7 +21,7 @@ const config = {
 			precompress: false,
 			strict: true
     }),
-    // serve to the correct Github Page URL
+    // serve to the correct Github Pages URL
     paths: {
       base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
     }
